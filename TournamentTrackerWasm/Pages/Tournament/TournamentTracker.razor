@@ -1,0 +1,65 @@
+﻿@page "/TournamentTracker"
+@using Radzen.Blazor
+
+<RadzenFieldset Text="Tournament">
+    <div class="row">
+        <div class="col-md-4 align-items-center d-flex">
+            <RadzenLabel Text="Round" />
+        </div>
+        <div class="col-md-8">
+            <RadzenDropDown TValue="string" AllowClear="true" Placeholder="Select something" style="width: 100%;"></RadzenDropDown>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 align-items-center d-flex">
+            <RadzenLabel Text="Unplayed Only" />
+        </div>
+        <div class="col-md-8">
+            <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <RadzenTextArea Style="width: inherit"></RadzenTextArea>
+        </div>
+        <div class="col">
+            <div style="width: 50%">
+                <RadzenCard>
+                    <h3>Team One</h3>
+                    <br />
+                    <span>
+                        <RadzenLabel Text="Score"></RadzenLabel>
+                        <RadzenTextBox></RadzenTextBox>
+                    </span>
+                    <br/>
+                </RadzenCard>
+            </div>
+            <div style="width: 50%">
+                <RadzenCard>
+                    <h3>Team One</h3>
+                    <br />
+                    <span>
+                        <RadzenLabel Text="Score"></RadzenLabel>
+                        <RadzenTextBox></RadzenTextBox>
+                    </span>
+                    <br/>
+                </RadzenCard>
+            </div>
+            <RadzenButton Text="Score"></RadzenButton>
+        </div>
+    </div>
+</RadzenFieldset>
+
+@code{
+
+    /*
+     * Tournament Name
+     * Round Select
+     * Unplayed Only check
+     * Matchup list display
+     * team one score
+     * team two score
+     * Score button
+     */
+
+}
