@@ -20,7 +20,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\TournamentTracker.Data\TournamentTracker.Data.csproj" />
       <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
     </ItemGroup>
 
 </Project>
