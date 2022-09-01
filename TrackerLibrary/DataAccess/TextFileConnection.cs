@@ -1,4 +1,4 @@
-﻿using TrackerLibrary.Models;
+﻿using TournamentTracker.Data;
 
 namespace TrackerLibrary.DataAccess;
 

@@ -16,4 +16,8 @@
       <Folder Include="Models" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TournamentTracker.Data\TournamentTracker.Data.csproj" />
+    </ItemGroup>
+
 </Project>
