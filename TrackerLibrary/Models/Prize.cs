@@ -1,7 +1,9 @@
-﻿namespace TrackerLibrary;
-
+﻿namespace TrackerLibrary.Models;
+//done
 public class Prize
 {
+    public int Id { get; set; }
+    
     public int PlaceNumber { get; set; }
 
     public string PlaceName { get; set; }

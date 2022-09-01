@@ -1,8 +1,7 @@
-﻿namespace TrackerLibrary;
-
+﻿namespace TrackerLibrary.Models;
+//done
 public class Person
 {
- 
     public string FirstName { get; set; }
 
     public string LastName { get; set; }
