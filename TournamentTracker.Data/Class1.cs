@@ -1,5 +1,7 @@
-﻿namespace TournamentTracker.Data;
-
-public class Class1
+﻿namespace TournamentTracker.Data
 {
+    public class Class1
+    {
+
+    }
 }

@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\TournamentTrackerWasm",
-    "\\TrackerLibrary"
+    ""
   ],
-  "SelectedNode": "\\TournamentTracker.sln",
+  "SelectedNode": "\\TournamentTrackerWasm",
   "PreviewInSolutionExplorer": false
 }

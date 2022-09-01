@@ -28,6 +28,6 @@
     }
   },
   "ConnectionStrings": {
-    "Tournaments" : "Server=LAPTOP-CL000050;Database=Tournaments;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    "Tournaments": "Data Source=LAPTOP-CL000050;Initial Catalog=Tournaments;Integrated Security=True;Trust Server Certificate=True;Command Timeout=300"
   }
 }
