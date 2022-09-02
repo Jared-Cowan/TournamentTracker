@@ -1,0 +1,81 @@
+﻿@page "/prizes"
+@using TournamentTracker.Data
+@inject DapperRepository<Prize> CustomerManager
+@inject NotificationService _notificationService
+<h3>Prizes</h3>
+
+<RadzenTemplateForm Data="@_prizeToCreate" Submit="@((Prize args) => { Submit(args); })">
+    <div class="row">
+        <div class="col-md-6">
+            <RadzenFieldset Text="Create Prize">
+                <div class="row">
+                    <div class="col-md-4 align-items-center d-flex">
+                        <RadzenLabel Text="Place Number" />
+                    </div>
+                    <div class="col-md-8">
+                        <RadzenNumeric TValue="int" @bind-Value="_prizeToCreate.PlaceNumber" Min="1"></RadzenNumeric>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 align-items-center d-flex">
+                        <RadzenLabel Text="Place Name" />
+                    </div>
+                    <div class="col-md-8">
+                        <RadzenTextBox style="width: 100%;" Name="CardNr" @bind-Value="_prizeToCreate.PlaceName"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 align-items-center d-flex">
+                        <RadzenLabel Text="Prize Amount" />
+                    </div>
+                    <div class="col-md-8">
+                        <RadzenNumeric Placeholder="300" style="width: 100%;" Name="Amount" @bind-Value="_prizeToCreate.PrizeAmount" />
+                    </div>
+                </div>
+                <br/>
+                <p>--OR--</p>
+                <div class="row">
+                    <div class="col-md-4 align-items-center d-flex">
+                        <RadzenLabel Text="Prize Percentage" />
+                    </div>
+                    <div class="col-md-8">
+                        <RadzenNumeric Placeholder="300" style="width: 100%;" Name="Percentage" @bind-Value="_prizeToCreate.PrizePercentage" />
+                    </div>
+                </div>
+                <div class="row">
+                    <RadzenButton Text="Add Prize" ButtonType="ButtonType.Submit"></RadzenButton>
+                </div>
+            </RadzenFieldset>
+        </div>
+    </div>
+</RadzenTemplateForm>
+
+@code {
+
+    private Prize _prizeToCreate = new();
+
+    async void Submit(Prize newPrize)
+    {
+        var insertPrize  = await CustomerManager.InsertAsync(newPrize);
+        if (insertPrize.Id != 0)
+        {
+            _notificationService.Notify(new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Success",
+                Detail = "Prize added Successfully",
+                Duration = 5000
+            });
+        }
+        else
+        {
+            _notificationService.Notify(new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "Error",
+                Detail = "Error adding prize. Try again later",
+                Duration = 5000
+            });
+        }
+    }
+}
