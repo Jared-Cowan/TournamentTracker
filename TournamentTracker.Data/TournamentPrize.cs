@@ -15,7 +15,6 @@ namespace TournamentTracker.Data
         public int PrizeId { get; set; }
 
         [ForeignKey(nameof(TournamentId))]
-        [InverseProperty(nameof(Prize.TournamentPrizes))]
         public virtual Prize Tournament { get; set; }
         [ForeignKey(nameof(TournamentId))]
         [InverseProperty("TournamentPrizes")]

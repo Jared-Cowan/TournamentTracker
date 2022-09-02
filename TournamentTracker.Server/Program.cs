@@ -1,5 +1,6 @@
 
 
+using Radzen;
 using TournamentTracker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddSingleton(s =>
 builder.Services.AddSingleton(s =>
     new DapperRepository<Person>(
         builder.Configuration.GetConnectionString("TournamentsConnectionString")));
+
+builder.Services.AddScoped<NotificationService>();
 
 var app = builder.Build();
 

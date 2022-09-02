@@ -8,11 +8,6 @@ namespace TournamentTracker.Data
 {
     public partial class Prize
     {
-        public Prize()
-        {
-            TournamentPrizes = new HashSet<TournamentPrize>();
-        }
-
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -23,8 +18,5 @@ namespace TournamentTracker.Data
         [Column(TypeName = "money")]
         public decimal PrizeAmount { get; set; }
         public double PrizePercentage { get; set; }
-
-        [InverseProperty(nameof(TournamentPrize.Tournament))]
-        public virtual ICollection<TournamentPrize> TournamentPrizes { get; set; }
     }
 }
