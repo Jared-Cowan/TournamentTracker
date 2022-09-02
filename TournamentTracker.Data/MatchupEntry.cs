@@ -20,7 +20,6 @@ namespace TournamentTracker.Data
         [InverseProperty("MatchupEntries")]
         public virtual Matchup Matchup { get; set; }
         [ForeignKey(nameof(TeamCompetingId))]
-        [InverseProperty(nameof(Team.MatchupEntries))]
         public virtual Team TeamCompeting { get; set; }
     }
 }
