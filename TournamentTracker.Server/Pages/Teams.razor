@@ -1,0 +1,83 @@
+﻿@page "/teams"
+@using TournamentTracker.Data
+@inject DapperRepository<Team> TeamManager
+@inject NotificationService NotificationService
+<h3>Teams</h3>
+
+<RadzenTemplateForm Data="@_teamToCreate" Submit="@((Team args) => { Submit(args); })">
+    <div class="row">
+        <div class="col-md-6">
+            <RadzenFieldset Text="Create Team">
+                <div class="row">
+                    <div class="col-md-4 align-items-center d-flex">
+                        <RadzenLabel Text="Team Name" />
+                    </div>
+                    <div class="col-md-8">
+                        <RadzenTextBox @bind-Value="_teamToCreate.TeamName" Style="width: 100%;"></RadzenTextBox>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <RadzenButton Text="Add Team" ButtonType="ButtonType.Submit"></RadzenButton>
+                </div>
+            </RadzenFieldset>
+        </div>
+    </div>
+</RadzenTemplateForm>
+
+<RadzenDataGrid @ref="_teamsGrid" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" Data="@_tournamentTeams" TItem="Team">
+    <Columns>
+        <RadzenDataGridColumn TItem="Team" Property="TeamName" Title="Team" Frozen="true" Width="70px" TextAlign="TextAlign.Center" />
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+
+    private Team _teamToCreate = new();
+    private List<Team> _tournamentTeams = new();
+    private RadzenDataGrid<Team> _teamsGrid = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var getTeams = await TeamManager.GetAllAsync();
+        foreach (var team in getTeams)
+        {
+            _tournamentTeams.Add(team);
+            await _teamsGrid.Reload();
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    async void Submit(Team newTeam)
+    {
+        var insertTeam  = await TeamManager.InsertAsync(newTeam);
+        if (insertTeam.Id != 0)
+        {
+            NotificationService.Notify(new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Success",
+                Detail = "Prize added Successfully",
+                Duration = 5000
+            });
+            var teams = await TeamManager.GetAllAsync();
+            _tournamentTeams.Clear();
+            foreach (var team in teams)
+            {
+                _tournamentTeams.Add(team);
+            }
+            await _teamsGrid.Reload();
+            await InvokeAsync(StateHasChanged);
+        }
+        else
+        {
+            NotificationService.Notify(new NotificationMessage()
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "Error",
+                Detail = "Error adding prize. Try again later",
+                Duration = 5000
+            });
+        }
+    }
+}

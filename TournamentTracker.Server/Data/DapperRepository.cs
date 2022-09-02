@@ -98,10 +98,9 @@ public class DapperRepository<TEntity> : IRepository<TEntity> where TEntity : cl
         using (IDbConnection db = new SqlConnection(_sqlConnectionString))
         {
             db.Open();
-            //string sql = $"select * from {entityName}";
-            //IEnumerable<TEntity> result = await db.QueryAsync<TEntity>(sql);
-            //return result;
-            return await db.GetAllAsync<TEntity>();
+            string sql = $"select * from {entityName}s";
+            IEnumerable<TEntity> result = await db.QueryAsync<TEntity>(sql);
+            return result;
         }
     }
 

@@ -10,15 +10,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddSingleton(s =>
-    new DapperRepository<Tournament>(
-        builder.Configuration.GetConnectionString("TournamentsConnectionString")));
-
-builder.Services.AddSingleton(s =>
     new DapperRepository<Prize>(
         builder.Configuration.GetConnectionString("TournamentsConnectionString")));
 
 builder.Services.AddSingleton(s =>
-    new DapperRepository<Person>(
+    new DapperRepository<Team>(
         builder.Configuration.GetConnectionString("TournamentsConnectionString")));
 
 builder.Services.AddScoped<NotificationService>();
